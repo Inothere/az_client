@@ -8,21 +8,21 @@ class ExpansionEnum(Enum):
 
 
 class IconEnum(Enum):
-    Directions = 'Directions'  # 卫兵和飞行点npc类型
-    Gunner = 'Gunner'  # 炮塔类
-    VehichleCursor = 'vehichleCursor'  # 载具类
-    Driver = 'Driver'  # 展示驾驶图标
-    Attack = 'Attack'  # 展示剑的图标
-    Buy = 'Buy'  # 购买图标
-    Speak = 'Speak'  # 聊天图标
-    Pickup = 'Pickup'  # 手掌图标
-    Interact = 'Interact'  # 齿轮图标
-    Trainer = 'Trainer'  # 书图标
-    Taxi = 'Taxi'  # 飞鞋图标
-    Repair = 'Repair'  # 铁砧图标
-    LootAll = 'LootAll'  # 购买图标
-    Quest = 'Quest'  # 无用
-    PVP = 'PVP'  # 无用
+    Directions = "Directions"  # 卫兵和飞行点npc类型
+    Gunner = "Gunner"  # 炮塔类
+    VehichleCursor = "vehichleCursor"  # 载具类
+    Driver = "Driver"  # 展示驾驶图标
+    Attack = "Attack"  # 展示剑的图标
+    Buy = "Buy"  # 购买图标
+    Speak = "Speak"  # 聊天图标
+    Pickup = "Pickup"  # 手掌图标
+    Interact = "Interact"  # 齿轮图标
+    Trainer = "Trainer"  # 书图标
+    Taxi = "Taxi"  # 飞鞋图标
+    Repair = "Repair"  # 铁砧图标
+    LootAll = "LootAll"  # 购买图标
+    Quest = "Quest"  # 无用
+    PVP = "PVP"  # 无用
 
 
 class NpcRankEnum(Enum):

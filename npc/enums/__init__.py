@@ -1,5 +1,11 @@
-from npc.enums.creature_template_enum import IconEnum, ExpansionEnum, \
-    NpcRankEnum, MeleeDmgEnum, NpcClassEnum, MovementTypeEnum
+from npc.enums.creature_template_enum import (
+    IconEnum,
+    ExpansionEnum,
+    NpcRankEnum,
+    MeleeDmgEnum,
+    NpcClassEnum,
+    MovementTypeEnum,
+)
 
 __all__ = [
     "IconEnum",
@@ -7,5 +13,5 @@ __all__ = [
     "NpcRankEnum",
     "MeleeDmgEnum",
     "NpcClassEnum",
-    "MovementTypeEnum"
+    "MovementTypeEnum",
 ]

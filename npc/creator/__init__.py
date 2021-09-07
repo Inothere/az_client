@@ -1,6 +1,4 @@
 from .vendor import VendorCreator
 
 
-__all__ = [
-    "VendorCreator"
-]
+__all__ = ["VendorCreator"]

@@ -4,3 +4,4 @@ SQLAlchemy-Utils==0.36.8
 ipython==7.16.0
 jedi==0.16.0
 pylint
+black
