@@ -1,4 +1,4 @@
-from npc.creator.base import VendorCreator
+from npc.creator import VendorCreator
 from base import world_engine
 import sqlalchemy as sa
 
