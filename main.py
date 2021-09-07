@@ -5,6 +5,4 @@ import sqlalchemy as sa
 
 with world_engine.connect() as conn:
     creator = VendorCreator(conn)
-    creator.do_create(
-        "warrior super vendor", ["Willey's Portable Howitzer", "Primed Musket"]
-    )
+    print(creator.vendor_pk)
