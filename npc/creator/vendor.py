@@ -17,7 +17,10 @@ class VendorCreator:
         return self._pk
 
     def name_exists(self, name: str):
-        r = self.conn.execute("select name from creature_template where name = %s", name)
+        r = self.conn.execute(
+            sa.text("select name from creature_template where name = :name"), 
+            name=name
+        )
         return bool(r.fetchone())
     
     def get_item_ids(self, item_list: typing.Set[str]) -> typing.List[int]:
@@ -72,6 +75,10 @@ class VendorCreator:
         """)
         self.conn.execute(sql, name=name, vendor_pk=self.vendor_pk)
         return self.vendor_pk
+    
+    def delete_creature_tempalte(self):
+        sql = sa.text("delete from creature_template where entry = :entry")
+        self.conn.execute(sql, entry=self.vendor_pk)
 
     def delete_npc_vendors(self):
         sql = sa.text("""
@@ -85,14 +92,23 @@ class VendorCreator:
         (
             `entry`,
             item
-        ) values (:entry, :item);
+        ) values (:entry, :item) ttt;
         """)
         for item_id in item_ids:
             self.conn.execute(sql, entry=self.vendor_pk, item=item_id)
 
 
     def do_create(self, name: str, item_list: typing.Iterable[str]):
-        item_ids = self.get_item_ids(set(item_list))
-        self.create_creature_template(name)
-        self.delete_npc_vendors()
-        self.insert_npc_vendors(item_ids)
+        try:
+            item_ids = self.get_item_ids(set(item_list))
+            self.create_creature_template(name)
+            self.delete_npc_vendors()
+            self.insert_npc_vendors(item_ids)
+        except Exception:
+            """
+            world db 表都是MyISAM引擎，需要手动回滚
+            """
+            self.delete_npc_vendors()
+            self.delete_creature_tempalte()
+            print("Rollback")
+            raise
