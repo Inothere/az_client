@@ -79,17 +79,19 @@ class VendorCreator:
         self.conn.execute(sql, name=name, vendor_pk=self.vendor_pk)
         return self.vendor_pk
 
-    def delete_creature_tempalte(self):
+    def delete_creature_template(self, vendor_pk=None):
+        entry = vendor_pk or self.vendor_pk
         sql = sa.text("delete from creature_template where entry = :entry")
-        self.conn.execute(sql, entry=self.vendor_pk)
+        self.conn.execute(sql, entry=entry)
 
-    def delete_npc_vendors(self):
+    def delete_npc_vendors(self, vendor_pk=None):
         sql = sa.text(
             """
         delete from npc_vendor where `entry` = :vendor_pk
         """
         )
-        self.conn.execute(sql, vendor_pk=self.vendor_pk)
+        vendor_pk = vendor_pk or self.vendor_pk
+        self.conn.execute(sql, vendor_pk=vendor_pk)
 
     def insert_npc_vendors(self, item_ids: typing.List[int]):
         sql = sa.text(
@@ -115,6 +117,17 @@ class VendorCreator:
             world db 表都是MyISAM引擎，需要手动回滚
             """
             self.delete_npc_vendors()
-            self.delete_creature_tempalte()
+            self.delete_creature_template()
             print("Rollback")
             raise
+
+    def do_teardown(self, name: str):
+        sql = sa.text("""
+        select entry from creature_template where name = :name
+        """)
+        r = self.conn.execute(sql, name=name).fetchone()
+        if not r:
+            return
+        vendor_pk = r[0]
+        self.delete_npc_vendors(vendor_pk)
+        self.delete_creature_template(vendor_pk)
