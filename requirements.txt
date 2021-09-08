@@ -5,3 +5,4 @@ ipython==7.16.0
 jedi==0.16.0
 pylint
 black
+dbcpy==1.0.2

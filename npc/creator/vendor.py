@@ -98,7 +98,7 @@ class VendorCreator:
         (
             `entry`,
             item
-        ) values (:entry, :item) ttt;
+        ) values (:entry, :item);
         """
         )
         for item_id in item_ids:
