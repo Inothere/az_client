@@ -44,5 +44,5 @@ class SpellReader(BaseReader):
 
 
 if __name__ == '__main__':
-    reader = SpellReader(r"D:\prog\ayasecore\core\data\dbc\spell.dbc")
+    reader = SpellReader(r"/Users/chendi/Downloads/dbc/spell.dbc")
     reader.to_csv("spell.csv")
