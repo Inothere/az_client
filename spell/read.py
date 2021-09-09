@@ -36,8 +36,13 @@ class SpellReader(BaseReader):
             "id": record.entry,
             "name": record.name.de_de,
             "subname": record.subname.de_de,
+            "description": record.description.de_de,
+            "tooltip": record.tooltip.de_de,
             "cooldown": record.cooldown,
             "global_cooldown": record.global_cooldown,
+            "effect": record.effect,
+            "effect1": record.effect1,
+            "effect2": record.effect2,
             "spell_level": record.spell_level,
             "mana_cost": record.mana_cost,
         }
