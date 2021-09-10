@@ -4,7 +4,8 @@ from npc.bis import BIS
 from dbc.dbc import CustomDBCFile, Loc
 from dbc.records import TestRecord
 from dbcpy.records.spell_record import SpellRecord
-from spell.read import SpellReader
+from spell.read import SpellReader, SpellRadiusReader, SpellMechanicReader, SpellRangeReader
+
 
 reader = SpellReader("/Users/chendi/Downloads/dbc/spell.dbc") 
 reader.to_csv('spell.csv')

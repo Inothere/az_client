@@ -1,7 +1,10 @@
 import typing
 from dbc import CustomDBCFile
 from dbcpy.records.spell_record import SpellRecord
+from dbc.records import SpellMechanicRecord, SpellRadiusRecord, SpellRangeRecord
 import csv
+
+from sqlalchemy_utils.listeners import force_auto_coercion
 
 
 class BaseReader:
@@ -38,16 +41,58 @@ class SpellReader(BaseReader):
             "subname": record.subname.de_de,
             "description": record.description.de_de,
             "tooltip": record.tooltip.de_de,
+            "range": record.range,
             "cooldown": record.cooldown,
             "global_cooldown": record.global_cooldown,
             "effect": record.effect,
             "effect1": record.effect1,
             "effect2": record.effect2,
+            "effect_apply_aura_name": record.effect_apply_aura_name,
+            "effect_apply_aura_name1": record.effect_apply_aura_name1,
+            "effect_apply_aura_name2": record.effect_apply_aura_name2,
+            "effect_base_points": record.effect_base_points,
+            "effect_base_points1": record.effect_base_points1,
+            "effect_base_points2": record.effect_base_points2,
             "spell_level": record.spell_level,
             "mana_cost": record.mana_cost,
         }
 
 
-if __name__ == '__main__':
+class SpellRadiusReader(BaseReader):
+    record_type = SpellRadiusRecord
+
+    def form_csv_row(self, record: typing.Any) -> typing.Dict:
+        return {
+            "id": record.id,
+            "radius": record.radius,
+            "radius_per_level": record.radius_per_level,
+            "radius_max": record.radius_max,
+        }
+
+
+class SpellMechanicReader(BaseReader):
+    record_type = SpellMechanicRecord
+
+    def form_csv_row(self, record: typing.Any) -> typing.Dict:
+        return {"id": record.id, "state_name": record.state_name.de_de}
+
+
+class SpellRangeReader(BaseReader):
+    record_type = SpellRangeRecord
+
+    def form_csv_row(self, record: typing.Any) -> typing.Dict:
+        return {
+            "id": record.id,
+            "min_range_hostile": record.min_range_hostile,
+            "min_range_friend": record.min_range_friend,
+            "max_range_hostile": record.max_range_hostile,
+            "max_range_friend": record.max_range_friend,
+            "flags": record.flags,
+            "display_name": record.display_name.de_de,
+            "display_name_short": record.display_name_short.de_de,
+        }
+
+
+if __name__ == "__main__":
     reader = SpellReader(r"/Users/chendi/Downloads/dbc/spell.dbc")
     reader.to_csv("spell.csv")
