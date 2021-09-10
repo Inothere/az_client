@@ -41,6 +41,7 @@ class SpellReader(BaseReader):
             "subname": record.subname.de_de,
             "description": record.description.de_de,
             "tooltip": record.tooltip.de_de,
+            "spell_class_set": record.spell_class_set,  # 职业相关
             "stack_amount": record.stack_amount,
             "range": record.range,
             "cooldown": record.cooldown,
