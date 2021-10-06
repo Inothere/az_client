@@ -7,5 +7,8 @@ from dbcpy.records.spell_record import SpellRecord
 from spell.read import SpellReader, SpellRadiusReader, SpellMechanicReader, SpellRangeReader
 
 
-reader = SpellReader("/Users/chendi/Downloads/dbc/spell.dbc") 
-reader.to_csv('spell.csv')
+creator = VendorCreator(world_engine.connect())
+creator.do_create(
+    "猎人60级BIS",
+    BIS["猎人"]
+)
